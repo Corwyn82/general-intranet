@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>AC Corp. Intranet</title>
+	  <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+	<header>
+		<nav class="be-ylw blkfnt large-padding">
+			<ul class="no-list row center-xs middle-xs nav">
+				
+					<li class="col-md">
+						<h1 class="no-margin" id="logo"><%= link_to "AC Corp.", root_path, class:'nav_lnk_color' %></h1>
+					</li>
+
+					<li class="col-md">
+						<%= link_to raw("<i class=\"glyphicon glyphicon-home\"></i> Home"), root_path, class:'nav_lnk_color' %>
+					</li>
+					<li class="col-md">
+						<%= link_to raw("<i class=\"glyphicon glyphicon-globe\"></i> About AC Corp."), about_path, class:'nav_lnk_color' %>
+					</li>
+				
+				<% if user_signed_in? %>
+					<li class="col-md">
+						<%= link_to raw("<i class=\"glyphicon glyphicon-list\"></i> Phone Directory"), extensions_path, class:'nav_lnk_color' %>
+					</li>
+					<li class="col-md">
+						<%= link_to raw("<i class=\"glyphicon glyphicon-envelope\"></i> Mail"), "https://mail.google.com", class:'nav_lnk_color', target: '_blank' %>
+					</li>
+
+					<li class="col-md">
+						<%= link_to raw("<i class=\"glyphicon glyphicon-user\"></i> Logout"), destroy_user_session_path, method: :delete, class:'nav_lnk_color' %>
+					</li>
+					<li class="col-md">
+						Logged in as: <%= current_user.email %>
+					</li>
+				<% else %>
+					
+					<li class="col-md">
+						<%= link_to raw("<i class=\"glyphicon glyphicon-user\"></i> Log-in"), new_user_session_path, class:'nav_lnk_color' %>
+					</li>
+					
+				<% end %>				 
+			</ul>
+		</nav>
+	</header>		
+		<div class="marco">
+			<p class="notice"><%= notice %></p>
+      		<p class="alert"><%= alert %></p>
+			<%= yield %>
+		</div>
+		<footer class="marco"><br/>© 2016 Corwyn82.</footer>
+	</body>
+</html>

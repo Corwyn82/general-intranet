@@ -1,0 +1,51 @@
+<%= image_tag "bgloged.jpg", class: 'img' %>
+
+<div class="row">
+	<div class="col-md">
+		<h1 class="orange_lnk">Welcome to the Generic Intranet Portal!</h1>
+		<p>
+			This is an example of the logged webpage you'll get here whenever you are logged in
+		</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md">
+		<h4>Links to Department pages</h4>
+		<ul class="orange_lnk">
+			<li>Human Resources</li>
+			<li>Accounting</li>
+			<li>Purchasing and Sales</li>
+			<li>Receiving and Shipping</li>
+			<li>Warehouse</li>
+			<li>Production</li>
+			<li>Engineering</li>
+			<li>IT</li>
+			<li>Marketing</li>
+		</ul>
+	</div>
+	<div class="col-md">
+		<h4>Newsfeed</h4>
+		<table>
+		  
+		  <tbody>
+		      <% @newsfeeds.last(4).reverse_each do |newsfeed| %>
+		      <tr>
+		        <td><div class="orange_lnk"><%= newsfeed.title %></div><%= newsfeed.body %><br/>by <%= newsfeed.user.email %></td>
+		        <td></td>
+		       </td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+		<br>
+
+		<%= link_to 'See all', newsfeeds_path, class:'orange_lnk' %> <%= link_to 'Create Article', new_newsfeed_path, class:'orange_lnk' %>
+
+	</div>
+	<div class="col-md">
+		<h4>Production Report</h4>
+		<br/>
+		<%= image_tag @piech %>
+	</div>
+</div>
+<hr/>
